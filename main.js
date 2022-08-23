@@ -144,9 +144,10 @@ const save = async (key, xmlObj, storage) => {
 
 // main Apify function
 Apify.main(async () => {
-    const baseXmlObj = await creteBaseXmlFromFeed(
-        "https://narratively.com/feed/"
-    );
+    const { url } = await Apify.getInput();
+
+    log.info("Scrapping from URL: ", url);
+    const baseXmlObj = await creteBaseXmlFromFeed(url);
 
     const appleNewsXml = createAppleNewsXml(baseXmlObj);
     const smartNewsXml = createSmartNewsXml(baseXmlObj);
