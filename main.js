@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 const Apify = require("apify");
 // eslint-disable-next-line import/no-extraneous-dependencies
-const fetch = require("node-fetch");
 
 const { log } = Apify.utils;
 const { create } = require("xmlbuilder2");
@@ -9,27 +8,6 @@ const cheerio = require("cheerio");
 const _ = require("lodash");
 // maxItems in rss feed
 const maxItems = 20;
-
-const sendSlackMessage = async (message) => {
-    try {
-        // TODO: Set as env var
-        const url =
-            "https://hooks.slack.com/services/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";
-        const body = {
-            text: message,
-        };
-        const res = await fetch(url, {
-            method: "POST",
-            body: JSON.stringify(body),
-        });
-
-        await res;
-        return true;
-    } catch (err) {
-        console.log("Error is: ", err);
-        return false;
-    }
-};
 
 // base Xml factory
 const creteBaseXmlFromFeed = async function (rssLink) {
@@ -177,11 +155,7 @@ Apify.main(async () => {
     const KVS = await Apify.openKeyValueStore("narratively");
 
     // save
-    const appleNews = await save("apple-news", appleNewsXml, KVS);
-    const smartNews = await save("smartnews", smartNewsXml, KVS);
-    const truncated = await save("truncated", truncatedXml, KVS);
-
-    await sendSlackMessage("Apple news URL is: ", appleNews);
-    await sendSlackMessage("Smart news URL is: ", smartNews);
-    await sendSlackMessage("Truncated URL is: ", truncated);
+    await save("apple-news", appleNewsXml, KVS);
+    await save("smartnews", smartNewsXml, KVS);
+    await save("truncated", truncatedXml, KVS);
 });

@@ -6,7 +6,6 @@
         "apify": "^2.0.1",
         "cheerio": "^1.0.0-rc.5",
         "lodash": "",
-        "node-fetch": "2.6.6",
         "xmlbuilder2": "^2.4.0"
     },
     "devDependencies": {
