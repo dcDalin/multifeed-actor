@@ -144,6 +144,12 @@ const save = async (key, xmlObj, storage) => {
 
 // main Apify function
 Apify.main(async () => {
+    const input = await Apify.getInput();
+
+    log.info(
+        "************************************************************************************************"
+    );
+    log.info("Input is: ", input);
     const baseXmlObj = await creteBaseXmlFromFeed(
         "https://narratively.com/feed/"
     );
