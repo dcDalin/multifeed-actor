@@ -152,7 +152,7 @@ Apify.main(async () => {
     const smartNewsXml = createSmartNewsXml(baseXmlObj);
     const truncatedXml = createTruncatedXml(appleNewsXml);
 
-    const KVS = await Apify.openKeyValueStore("narratively");
+    const KVS = await Apify.openKeyValueStore(url);
 
     // save
     await save("apple-news", appleNewsXml, KVS);
