@@ -1,14 +1,17 @@
 {
-    "title": "Input schema for the apify_project actor.",
+    "title": "RSS Feed URL",
+    "description": "RSS URL from which we will generate base XML from the RSS feed",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
-        "test": {
-            "title": "Test",
+        "url": {
+            "title": "RSS Feed URL",
             "type": "string",
-            "description": "There is testing input field description.",
+            "description": "RSS URL to scrape from",
+            "prefill": "https://narratively.com/feed/",
+            "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)",
             "editor": "textfield"
         }
     },
-    "required": []
+    "required": ["url"]
 }
